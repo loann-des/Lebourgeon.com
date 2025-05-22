@@ -1,0 +1,20 @@
+h2 Nos projets
+p Découvrez les initiatives concrètes de notre association étudiante pour faire bouger les lignes à Rennes en matière d'écologie et de solidarité.
+§§§ <--! LIGNE DE SEPARATION --> section 1
+h3 Sauvetage de faons
+p Grâce à un drone thermique, nous localisons et mettons en sécurité les faons avant la fauche, contribuant ainsi à la protection de la biodiversité locale
+§§§ <--! LIGNE DE SEPARATION --> section 2
+h3 Drive alimentaire étudiant
+p Nous mettons en place un système de drive solidaire pour faciliter l'accès à des produits de qualité et abordables pour les étudiants rennais
+§§§ <--! LIGNE DE SEPARATION --> section 3
+h3 Ateliers de réparation solidaire
+p Nous organisons des sessions de réparation d'ordinateurs et de téléphones où vous ne payez que le prix des pièces, prolongeant ainsi la durée de vie de vos appareils et luttant contre l'obsolescence programmée
+§§§ <--! LIGNE DE SEPARATION --> section 4
+h3 Vulgarisation scientifique écologique
+p Nous créons des articles clairs et accessibles pour décrypter les enjeux environnementaux et encourager une prise de conscience collective
+§§§ <--! LIGNE DE SEPARATION --> section 5
+h3 Cinés-débats et concours d'éloquence
+p Nous organisons des événements culturels engageants pour susciter la réflexion et encourager la prise de parole sur des thématiques écologiques et sociales
+§§§ <--! LIGNE DE SEPARATION --> section 6
+h3 Festivals éco-responsables
+p Nous imaginons et mettons en place des événements festifs respectueux de l'environnement, pour prouver que convivialité et durabilité peuvent aller de pair

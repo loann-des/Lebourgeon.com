@@ -1,0 +1,17 @@
+h2 À propos de nous
+p Notre collectif étudiant à Rennes s'engage au quotidien pour un campus et une ville plus écologiques et solidaires. Animés par des valeurs de partage et de responsabilité, nous proposons des actions concrètes pour un avenir durable
+§§§ <--! LIGNE DE SEPARATION --> section 1
+h3 Votre Engagement Étudiant pour l'Écologie et la Solidarité
+p Sensibilisation, actions sur le terrain, entraide... Notre association étudiante vous offre un espace pour agir et vous engager pour les causes qui vous tiennent à cœur
+p Que vous soyez passionné par la réduction des déchets, l'agriculture urbaine, la mobilité douce, la justice sociale, ou l'éducation à l'environnement, vous trouverez votre place parmi nous. Nos projets sont variés et ouverts à toutes les bonnes volontés. Rejoignez-nous pour mettre en œuvre des solutions innovantes et solidaires au sein de la communauté étudiante rennaise et au-delà
+§§§ <--! LIGNE DE SEPARATION --> section 2 italique
+p Ensemble, imaginons des solutions innovantes et concrètes pour répondre aux enjeux de notre époque. Que vous ayez des compétences spécifiques ou simplement l'envie de vous investir, votre contribution est précieuse !
+§§§ <--! LIGNE DE SEPARATION --> liste section 3
+item Rejoignez nos événements conviviaux
+dsc : projections de films, débats,Repair Cafés, fêtes alternatives...
+item Engagez-vous dans nos actions de terrain
+dsc : nettoyage de sites naturels, création de jardins partagés, collectes solidaires...
+item Réparons ensemble vos appareils
+dsc : profitez de nos ateliers de réparation de téléphones et d'ordinateurs. Vous ne payez que le prix des pièces de rechange, et apprenez au passage à prolonger la durée de vie de vos équipements !
+§§§ <--! LIGNE DE SEPARATION --> section 4
+p Votre engagement fait la différence à Rennes et au-delà. Ensemble, nous pouvons construire un avenir plus durable et solidaire pour tous. Rejoignez-nous dès aujourd'hui et devenez acteur du changement !

@@ -1,0 +1,809 @@
+{% extends 'base.html' %}
+{% block title %}Le Bourgeon{% endblock %}
+{% block body_class %}"index-page"{% endblock %}
+{% block content %}
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero section accent-background">
+
+      <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+        <div class="row gy-5 justify-content-between">
+          <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center">
+            <h2><span>Bienvenue chez </span><span class="accent">Le Bourgeon</span></h2>
+            <p>{{text_from('hero_section')}}</p>
+            <div class="d-flex">
+              <a href="#about" class="btn-get-started">C'est parti !</a>
+            </div>
+          </div>
+          <div class="col-lg-5 order-1 order-lg-2">
+            <img src="{{ url_for('static', filename='images/logo2.png') }}" class="img-fluid" alt="">
+          </div>
+        </div>
+      </div>
+
+      <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
+        <div class="container position-relative">
+          <div class="row gy-4 mt-5">
+
+            <div class="col-xl-3 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-tree"></i></div>
+                <h4 class="title"><a class="stretched-link">Écologique</a></h4>
+              </div>
+            </div><!--End Icon Box -->
+
+            <div class="col-xl-3 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-hand-thumbs-up"></i></div>
+                <h4 class="title"><a class="stretched-link">Solidaire</a></h4>
+              </div>
+            </div><!--End Icon Box -->
+
+            <div class="col-xl-3 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-geo-alt"></i></div>
+                <h4 class="title"><a class="stretched-link">Rennes et ses alentours</a></h4>
+              </div>
+            </div><!--End Icon Box -->
+
+            <div class="col-xl-3 col-md-6">
+              <div class="icon-box">
+                <div class="icon"><i class="bi bi-book"></i></div>
+                <h4 class="title"><a class="stretched-link">Étudiant</a></h4>
+              </div>
+            </div><!--End Icon Box -->
+
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Hero Section -->
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        {% for l in html_from('about_section', 0)%}
+          {% if  l[0:2]=="h2"%}
+            <h2>{{l[3:]}}</h2>
+          {% endif %}
+          {% if  l[0:2]=="h3"%}
+            <h3>{{l[3:]}}</h3>
+          {% endif %}
+          {% if  l[0:1]=="p"%}
+            <p>{{l[2:]}}</p>
+          {% endif %}
+        {% endfor %}
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+            <h3>{{html_from('about_section',1)[0][3:]}}</h3>
+            <!--<img src="{{ url_for('static', filename='images/about.jpg') }}" class="img-fluid rounded-4 mb-4" alt="">-->
+            {% for l in html_from('about_section', 1)[1:]%}
+              {% if  l[0:2]=="h2"%}
+                <h2>{{l[3:]}}</h2>
+              {% endif %}
+              {% if  l[0:2]=="h3"%}
+                <h3>{{l[3:]}}</h3>
+              {% endif %}
+              {% if  l[0:1]=="p"%}
+                <p>{{l[2:]}}</p>
+              {% endif %}
+            {% endfor %}
+          </div>
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+            <div class="content ps-0 ps-lg-5">
+              <p class="fst-italic">{{html_from('about_section',2)[0][2:]}}</p>
+              <ul>
+                {% for l in html_from('about_section', 3) %}
+                  {% if l[0:4]=="item"%}
+                    <li><i class="bi bi-check-circle-fill"></i> <b>{{l[5:]}}</b>
+                  {% endif %}
+                  {% if l[0:3]=="dsc"%}
+                  <span>{{l[4:]}}</span></li>
+                  {% endif %}
+                
+                {% endfor %}
+              </ul>
+              <p>
+                {{html_from('about_section',4)[0][2:]}}
+              </p>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /About Section -->
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats section">
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gy-4 align-items-center">
+
+          <div class="col-lg-5">
+            <img src="{{ url_for('static', filename='images/stats-img.svg') }}" alt="" class="img-fluid">
+          </div>
+
+          <div class="col-lg-7">
+
+            <div class="row gy-4">
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-emoji-smile flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>Membres</strong> <span>Bureau et Actif</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-journal-richtext flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="2" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>Projets</strong> <span>Rennes et ses alentours</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-people flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>Partenaires</strong> <span>Association et Organisation</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+              <div class="col-lg-6">
+                <div class="stats-item d-flex">
+                  <i class="bi bi-people flex-shrink-0"></i>
+                  <div>
+                    <span data-purecounter-start="0" data-purecounter-end="0" data-purecounter-duration="1" class="purecounter"></span>
+                    <p><strong>Gens aidés</strong> <span>Étudiant et Agriculteur</span></p>
+                  </div>
+                </div>
+              </div><!-- End Stats Item -->
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section><!-- /Stats Section -->
+
+    <!-- Call To Action Section -->
+    <section id="call-to-action" class="call-to-action section dark-background">
+
+      <div class="container">
+        <img src="{{ url_for('static', filename='images/cta-bg.jpg') }}" alt="">
+        <div class="content row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-xl-10">
+            <div class="text-center">
+              {% for l in html_from('call_to_action', 0)%}
+                {% if  l[0:2]=="h2"%}
+                  <h2>{{l[3:]}}</h2>
+                {% endif %}
+                {% if  l[0:2]=="h3"%}
+                  <h3>{{l[3:]}}</h3>
+                {% endif %}
+                {% if  l[0:1]=="p"%}
+                  <p>{{l[2:]}}</p>
+                {% endif %}
+              {% endfor %}
+            <a class="cta-btn" href="/#pricing">Rejoignez nous !</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section><!-- /Call To Action Section -->
+
+    <!-- Services Section -->
+    <section id="services" class="services section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        {% for l in html_from('service', 0)%}
+          {% if  l[0:2]=="h2"%}
+            <h2>{{l[3:]}}</h2>
+          {% endif %}
+          {% if  l[0:2]=="h3"%}
+            <h3>{{l[3:]}}</h3>
+          {% endif %}
+          {% if  l[0:1]=="p"%}
+            <p>{{l[2:]}}</p>
+          {% endif %}
+        {% endfor %}
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative">
+              <div class="icon">
+                <i class="bi bi-tree"></i>
+              </div>
+              {% for l in html_from('service', 1)%}
+                {% if  l[0:2]=="h2"%}
+                  <h2>{{l[3:]}}</h2>
+                {% endif %}
+                {% if  l[0:2]=="h3"%}
+                  <h3>{{l[3:]}}</h3>
+                {% endif %}
+                {% if  l[0:1]=="p"%}
+                  <p>{{l[2:]}}</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-house-heart"></i>
+              </div>
+              {% for l in html_from('service', 2)%}
+                {% if  l[0:2]=="h2"%}
+                  <h2>{{l[3:]}}</h2>
+                {% endif %}
+                {% if  l[0:2]=="h3"%}
+                  <h3>{{l[3:]}}</h3>
+                {% endif %}
+                {% if  l[0:1]=="p"%}
+                  <p>{{l[2:]}}</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-hammer"></i>
+              </div>
+              {% for l in html_from('service', 3)%}
+                {% if  l[0:2]=="h2"%}
+                  <h2>{{l[3:]}}</h2>
+                {% endif %}
+                {% if  l[0:2]=="h3"%}
+                  <h3>{{l[3:]}}</h3>
+                {% endif %}
+                {% if  l[0:1]=="p"%}
+                  <p>{{l[2:]}}</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-journal"></i>
+              </div>
+              {% for l in html_from('service', 4)%}
+                {% if  l[0:2]=="h2"%}
+                  <h2>{{l[3:]}}</h2>
+                {% endif %}
+                {% if  l[0:2]=="h3"%}
+                  <h3>{{l[3:]}}</h3>
+                {% endif %}
+                {% if  l[0:1]=="p"%}
+                  <p>{{l[2:]}}</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-projector"></i>
+              </div>
+              {% for l in html_from('service', 5)%}
+                {% if  l[0:2]=="h2"%}
+                  <h2>{{l[3:]}}</h2>
+                {% endif %}
+                {% if  l[0:2]=="h3"%}
+                  <h3>{{l[3:]}}</h3>
+                {% endif %}
+                {% if  l[0:1]=="p"%}
+                  <p>{{l[2:]}}</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="service-item position-relative">
+              <div class="icon">
+                <i class="bi bi-balloon"></i>
+              </div>
+              {% for l in html_from('service', 6)%}
+                {% if  l[0:2]=="h2"%}
+                  <h2>{{l[3:]}}</h2>
+                {% endif %}
+                {% if  l[0:2]=="h3"%}
+                  <h3>{{l[3:]}}</h3>
+                {% endif %}
+                {% if  l[0:1]=="p"%}
+                  <p>{{l[2:]}}</p>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </div><!-- End Service Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Services Section -->
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Notre Bureau</h2>
+        <p>Une équipe d'étudiants engagés et passionnés, au service de vos initiatives écologiques et solidaires à Rennes</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="100">
+            <div class="member">
+              <img src="{{ url_for('static', filename='images/team/team-1.jpg') }}" class="img-fluid" alt="">
+              <h4>Loann Desbles</h4>
+              <span>Président</span>
+              <div class="social">
+                <a href="https://www.instagram.com/loann_des"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="200">
+            <div class="member">
+              <img src="{{ url_for('static', filename='images/team/team-2.jpg') }}" class="img-fluid" alt="">
+              <h4>Camille Cardin-Magnan</h4>
+              <span>Secrétaire</span>
+              <div class="social">
+                <a href="https://www.instagram.com/jaime_bien_les_pepito"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="300">
+            <div class="member">
+              <img src="{{ url_for('static', filename='images/team/team-3.jpg') }}" class="img-fluid" alt="">
+              <h4>Mathurin Bourgeat</h4>
+              <span>Trésorier</span>
+              <div class="social">
+                <a href="https://www.instagram.com/mathurinbrgt"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+          <div class="col-xl-3 col-md-6 d-flex" data-aos="fade-up" data-aos-delay="400">
+            <div class="member">
+              <img src="{{ url_for('static', filename='images/team/team-4.jpg') }}" class="img-fluid" alt="">
+              <h4>Théodore White</h4>
+              <span>Éditorialiste</span>
+              <div class="social">
+                <a href="https://www.instagram.com/theodorewhite5406"><i class="bi bi-instagram"></i></a>
+              </div>
+            </div>
+          </div><!-- End Team Member -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Team Section -->
+
+    <!-- adesion Section -->
+    <section id="pricing" class="pricing section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Adhésions</h2>
+        <p>Soutenez nos actions et devenez membre de notre association étudiante à Rennes !</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="zoom-in" data-aos-delay="100">
+
+        <div class="row g-4">
+
+          <div class="col-lg-4">
+            <div class="pricing-item">
+              <h3>Membre simple</h3>
+              <div class="icon">
+                <i class="bi bi-box"></i>
+              </div>
+              <h4><sup>€</sup>1<span> / an</span></h4>
+              <div class="text-center"><a href="https://www.helloasso.com/associations/le-bourgeon/adhesions/adhesion" class="buy-btn" target="blank">Adhérer</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4">
+            <div class="pricing-item featured">
+              <h3>Membre d'honneur</h3>
+              <div class="icon">
+                <i class="bi bi-rocket"></i>
+              </div>
+
+              <h4><sup>€</sup>3<span> / an</span></h4>
+              <div class="text-center"><a href="https://www.helloasso.com/associations/le-bourgeon/adhesions/adhesion" class="buy-btn" target="blank">Adhérer</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4">
+            <div class="pricing-item">
+              <h3>Membre Bienfaiteur</h3>
+              <div class="icon">
+                <i class="bi bi-send"></i>
+              </div>
+              <h4><sup>€</sup>5<span> / an</span></h4>
+              <div class="text-center"><a href="https://www.helloasso.com/associations/le-bourgeon/adhesions/adhesion" class="buy-btn" target="blank">Adhérer</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /adesion Section -->
+
+    <!-- dons Section -->
+    <section id="pricing" class="pricing section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Nous soutenir</h2>
+        <p>Soutenez nos actions et devenez donateur de notre association étudiante à Rennes !</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="zoom-in" data-aos-delay="100">
+
+        <div class="row g-4">
+
+          <div class="col-lg-4">
+            <div class="pricing-item">
+              <h3>Don Mensuel</h3>
+              <div class="icon">
+                <i class="bi bi-box"></i>
+              </div>
+              <h4><sup>€</sup>Libre<span> / mois</span></h4>
+              <div class="text-center"><a href="https://www.helloasso.com/associations/le-bourgeon/formulaires/1" class="buy-btn" target="blank">Adhérer</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4">
+            <div class="pricing-item featured">
+              <h3>Don Ponctuel</h3>
+              <div class="icon">
+                <i class="bi bi-rocket"></i>
+              </div>
+
+              <h4><sup>€</sup>Libre<span></span></h4>
+              <div class="text-center"><a href="https://www.helloasso.com/associations/le-bourgeon/formulaires/1" class="buy-btn" target="blank">Adhérer</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-4">
+            <div class="pricing-item">
+              <h3>Don Mensuel</h3>
+              <div class="icon">
+                <i class="bi bi-send"></i>
+              </div>
+              <h4><sup>€</sup>10<span> / mois</span></h4>
+              <div class="text-center"><a href="https://www.helloasso.com/associations/le-bourgeon/formulaires/1" class="buy-btn" target="blank">Adhérer</a></div>
+            </div>
+          </div><!-- End Pricing Item -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Pricing Section -->
+
+    <!-- Faq Section -->
+    <section id="faq" class="faq section">
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="content px-xl-5">
+              <h3><span><strong>Questions</strong> Fréquemment Posées</span></h3>
+              <p>
+                Vous avez des questions sur notre association ou nos actions ? Voici quelques réponses aux questions les plus fréquentes :
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+
+            <div class="faq-container">
+              <div class="faq-item faq-active">
+                <h3><span class="num">1.</span> <span>Comment puis-je devenir membre de votre association ?</span></h3>
+                <div class="faq-content">
+                  <p>C'est simple ! Rendez-vous dans la section "Adhésions" de notre site web. Vous y trouverez les différentes formules de soutien et pourrez adhérer en quelques clics. Votre engagement est précieux !</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">2.</span> <span>Quels types d'actions concrètes menez-vous à Rennes ?</span></h3>
+                <div class="faq-content">
+                  <p>Pour le moment nous menons une activité éditoriale et essayons de sauver des faons. N'hésitez pas à consulter notre page "Nos Projets" pour en savoir plus !</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">3.</span> <span>Ai-je besoin d'être étudiant pour rejoindre votre association ?</span></h3>
+                <div class="faq-content">
+                  <p>Bien que nous soyons une association étudiante basée à Rennes, nous sommes ouverts à toutes les personnes intéressées par nos actions et souhaitant nous soutenir. N'hésitez pas à nous contacter !</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">4.</span> <span>Comment puis-je m'impliquer concrètement dans vos projets ?</span></h3>
+                <div class="faq-content">
+                  <p>Il y a de nombreuses façons de participer ! Vous pouvez devenir membre, faire du bénévolat lors de nos événements ou actions de terrain, partager vos compétences lors de nos ateliers... Contactez-nous pour discuter de vos envies et de vos disponibilités !</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+              <div class="faq-item">
+                <h3><span class="num">5.</span> <span>Où puis-je trouver plus d'informations sur vos événements à venir ?</span></h3>
+                <div class="faq-content">
+                  <p>Toutes nos actualités et nos événements sont régulièrement mis à jour sur notre site web et Instagram. Suivez-nous pour ne rien manquer de nos prochaines initiatives !</p>
+                </div>
+                <i class="faq-toggle bi bi-chevron-right"></i>
+              </div><!-- End Faq item-->
+
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+    </section><!-- /Faq Section -->
+
+    <!-- Recent Posts Section -->
+    <section id="recent-posts" class="recent-posts section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Articles récents</h2>
+        <p>Découvrez nos dernières publications et réflexions sur l'écologie, la solidarité et nos actions à Rennes.</p><br>
+        <h3 class="fst-italic">Comming soon...</h3>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+
+        <div class="row gy-4">
+
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <!--
+            <article>
+
+              <div class="post-img">
+                <img src="{{ url_for('static', filename='images/blog/blog-1.jpg') }}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Politics</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Dolorum optio tempore voluptas dignissimos</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/blog/blog-author.jpg') }}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Maria Doe</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Jan 1, 2022</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+          -->
+          </div><!-- End post list item -->
+          <!--
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <article>
+
+              <div class="post-img">
+                <img src="{{ url_for('static', filename='images/blog/blog-2.jpg') }}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Sports</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Nisi magni odit consequatur autem nulla dolorem</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/blog/blog-author-2.jpg') }}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Allisa Mayer</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Jun 5, 2022</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+            -->
+          </div><!-- End post list item -->
+          <!--
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <article>
+
+              <div class="post-img">
+                <img src="{{ url_for('static', filename='images/blog/blog-3.jpg') }}" alt="" class="img-fluid">
+              </div>
+
+              <p class="post-category">Entertainment</p>
+
+              <h2 class="title">
+                <a href="blog-details.html">Possimus soluta ut id suscipit ea ut in quo quia et soluta</a>
+              </h2>
+
+              <div class="d-flex align-items-center">
+                <img src="{{ url_for('static', filename='images/blog/blog-author-3.jpg') }}" alt="" class="img-fluid post-author-img flex-shrink-0">
+                <div class="post-meta">
+                  <p class="post-author">Mark Dower</p>
+                  <p class="post-date">
+                    <time datetime="2022-01-01">Jun 22, 2022</time>
+                  </p>
+                </div>
+              </div>
+
+            </article>
+            -->
+          </div><!-- End post list item -->
+
+        </div><!-- End recent posts list -->
+
+      </div>
+
+    </section><!-- /Recent Posts Section -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Contact</h2>
+        <p>Contactez nous pour plus d'information</p>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row gx-lg-0 gy-4">
+
+          <div class="col-lg-4">
+            <div class="info-container d-flex flex-column align-items-center justify-content-center">
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
+                <i class="bi bi-geo-alt flex-shrink-0"></i>
+                <div>
+                  <h3>Addresse</h3>
+                  <p>263 avenue Général Leclerc, Rennes, 35042 RENNES</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="300">
+                <i class="bi bi-telephone flex-shrink-0"></i>
+                <div>
+                  <h3>Téléphone</h3>
+                  <p>06 40 90 51 17</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
+                <i class="bi bi-envelope flex-shrink-0"></i>
+                <div>
+                  <h3>Email</h3>
+                  <p>lebourgeon.asso@gmail.com</p>
+                </div>
+              </div><!-- End Info Item -->
+
+              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
+                <i class="bi bi-clock flex-shrink-0"></i>
+                <div>
+                  <h3>Heures d'ouverture:</h3>
+                  <p>Lundi-Vendredi: 08h00 - 20h00</p>
+                  <p>Samedi: 14h00 - 18h00</p>
+                </div>
+              </div><!-- End Info Item -->
+
+            </div>
+
+          </div>
+
+          <div class="col-lg-8">
+            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade" data-aos-delay="100">
+              <div class="row gy-4">
+
+                <div class="col-md-6">
+                  <input type="text" name="name" class="form-control" placeholder="Votre nom" required="">
+                </div>
+
+                <div class="col-md-6 ">
+                  <input type="email" class="form-control" name="email" placeholder="Votre Email" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <input type="text" class="form-control" name="subject" placeholder="Sujet" required="">
+                </div>
+
+                <div class="col-md-12">
+                  <textarea class="form-control" name="message" rows="8" placeholder="Message" required=""></textarea>
+                </div>
+
+                <div class="col-md-12 text-center">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Votre message a bien été envoyer. A bientot !</div>
+
+                  <button type="submit">Envoyez votre message</button>
+                </div>
+
+              </div>
+            </form>
+          </div><!-- End Contact Form -->
+
+        </div>
+
+      </div>
+
+    </section><!-- /Contact Section -->
+
+{% endblock %}
+{% block JS %}
+
+  <!-- Scroll Top -->
+  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Preloader -->
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/aos/aos.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/purecounter/purecounter_vanilla.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+
+  <!-- Main JS File -->
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+{% endblock %}
