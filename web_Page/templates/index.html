@@ -538,16 +538,12 @@
                   <h2>{{txtOf(l)}}</h2>
                 {% endif %}
                 {% if  mdw(l)=="h3"%}
-                  <h3><span>{{word_at_index(0)}}<strong></strong>{{txt_from_index(1)}}</span></h3>
+                  <h3><span><strong>{{word_at_index(0,l)}}</strong>{{txt_from_index(1,l)}}</span></h3>
                 {% endif %}
                 {% if  mdw(l)=="p"%}
                   <p>{{txtOf(l)}}</p>
                 {% endif %}
               {% endfor %}
-              <h3><span><strong>Questions</strong> Fréquemment Posées</span></h3>
-              <p>
-                Vous avez des questions sur notre association ou nos actions ? Voici quelques réponses aux questions les plus fréquentes :
-              </p>
             </div>
           </div>
 

@@ -4,7 +4,7 @@ import logging as lg
 import config as c
 import enum
 from .models import Article, Autor
-from sqlalchemy import intersect
+
 
 
 class Val(enum.Enum):
@@ -21,21 +21,20 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 URI = os.path.join(basedir, 'txt')
 
 def word_at_index(index : int, txt : str)->str:
-    return ' ' + txt.split(' ')[index-1]
+    return txt.split(' ')[index+1]
 
 def mdw(txt : str)->str :
     return word_at_index(-1, txt)
 
-def txtOf(txt : str)->str :
-    tab_word = [word+' 'for word in txt.split(' ')]
-    tab_word.pop(0)
-    return' '.join(txt)
 
 def txt_from_index(index : int, txt : str)->str :
     index += 1
     return ''.join(
         [' ' + word for word in txt.split(' ')[index:]]
         )
+    
+def txtOf(txt : str)->str :
+    return txt_from_index(0, txt)
 
 def text_from(file_name: str, title: bool = False):
     file_name = file_name + '.txt'
