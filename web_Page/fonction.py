@@ -20,6 +20,22 @@ class Val(enum.Enum):
 basedir = os.path.abspath(os.path.dirname(__file__))
 URI = os.path.join(basedir, 'txt')
 
+def word_at_index(index : int, txt : str)->str:
+    return ' ' + txt.split(' ')[index-1]
+
+def mdw(txt : str)->str :
+    return word_at_index(-1, txt)
+
+def txtOf(txt : str)->str :
+    tab_word = [word+' 'for word in txt.split(' ')]
+    tab_word.pop(0)
+    return' '.join(txt)
+
+def txt_from_index(index : int, txt : str)->str :
+    index += 1
+    return ''.join(
+        [' ' + word for word in txt.split(' ')[index:]]
+        )
 
 def text_from(file_name: str, title: bool = False):
     file_name = file_name + '.txt'
@@ -32,7 +48,7 @@ def text_from(file_name: str, title: bool = False):
                 return f.readlines()[1].replace("\n", "")
     except Exception as ex:
         lg.warning(ex)
-
+    
 
 def html_from(file_name: str, section: int):
     file_name = file_name + '.txt'
@@ -87,7 +103,10 @@ def str_(x : int) :
 
 
 
-
+app.jinja_env.globals.update(mdw=mdw)
+app.jinja_env.globals.update(txtOf=txtOf)
+app.jinja_env.globals.update(word_at_index=word_at_index)
+app.jinja_env.globals.update(txt_from_index=txt_from_index)
 app.jinja_env.globals.update(text_from=text_from)
 app.jinja_env.globals.update(html_from=html_from)
 app.jinja_env.globals.update(get_ref=get_ref)

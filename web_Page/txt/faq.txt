@@ -1,0 +1,13 @@
+h3 Questions Fréquemment Posées
+p Vous avez des questions sur notre association ou nos actions ? Voici quelques réponses aux questions les plus fréquentes :
+§§§ <--! LIGNE DE SEPARATION --> section 1
+item 1. Comment puis-je devenir membre de votre association ?
+dsc C'est simple ! Rendez-vous dans la section "Adhésions" de notre site web. Vous y trouverez les différentes formules de soutien et pourrez adhérer en quelques clics. Votre engagement est précieux !
+item 2. Quels types d'actions concrètes menez-vous à Rennes ?
+dsc Pour le moment nous menons une activité éditoriale et essayons de sauver des faons. N'hésitez pas à consulter notre page "Nos Projets" pour en savoir plus !
+item 3. Ai-je besoin d'être étudiant pour rejoindre votre association ?
+dsc Bien que nous soyons une association étudiante basée à Rennes, nous sommes ouverts à toutes les personnes intéressées par nos actions et souhaitant nous soutenir. N'hésitez pas à nous contacter !
+item 4. Comment puis-je m'impliquer concrètement dans vos projets ?
+dsc Il y a de nombreuses façons de participer ! Vous pouvez devenir membre, faire du bénévolat lors de nos événements ou actions de terrain, partager vos compétences lors de nos ateliers... Contactez-nous pour discuter de vos envies et de vos disponibilités !
+item 5. Où puis-je trouver plus d'informations sur vos événements à venir ?
+dsc Toutes nos actualités et nos événements sont régulièrement mis à jour sur notre site web et Instagram. Suivez-nous pour ne rien manquer de nos prochaines initiatives !
