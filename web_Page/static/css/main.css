@@ -1017,14 +1017,14 @@ section,
   color: color-mix(in srgb, var(--default-color), transparent 20%);
 }
 
-.hero .icon-box:hover {
+/* .hero .icon-box:hover {
   background-color: color-mix(in srgb, var(--background-color), white 10%);
 }
 
 .hero .icon-box:hover .title a,
 .hero .icon-box:hover .icon {
   color: var(--contrast-color);
-}
+} */
 
 /*--------------------------------------------------------------
 # About Section

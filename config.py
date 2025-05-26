@@ -15,3 +15,10 @@ TEL = '06 40 90 51 17'
 LINKEDIN = ''
 ADHESION = 'https://www.helloasso.com/associations/le-bourgeon/adhesions/adhesion'
 DONS = 'https://www.helloasso.com/associations/le-bourgeon/formulaires/1'
+
+# Configuration Flask-Mail
+MAIL_SERVER = 'smtp.gmail.com'
+MAIL_PORT = 587
+MAIL_USE_TLS = True
+MAIL_USERNAME = 'lebourgeon.asso@gmail.com'        # Ton email
+MAIL_PASSWORD = 'liyvniblfckrgqyd'      # Mot de passe d'application (pas ton vrai mot de passe !)
