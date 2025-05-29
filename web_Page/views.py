@@ -1,19 +1,20 @@
 from flask import Flask ,render_template, request
 from flask_mail import Mail, Message
 import logging as lg
-import config as c
+from config import config as c
 
 app = Flask(__name__)
 
-mail = Mail(app)
 
 # app.config.from_object('config')
 # Config options - Make sure you created a 'config.py' file.
-app.config.from_object("config")
+app.config.from_object("config.config")
+
 
 # To get one variable, tape app.config['MY_VARIABLE']
 app.config["SQLALCHEMY_DATABASE_URI"] = c.SQLALCHEMY_DATABASE_URI
 
+mail = Mail(app)
 
 @app.route("/")
 @app.route("/index/")
@@ -37,6 +38,7 @@ def send_email():
         email = request.form['email']
         subject = request.form['subject']
         message = request.form['message']
+        
 
         msg = Message(subject,
                       sender=email,
@@ -46,7 +48,8 @@ def send_email():
         mail.send(msg)
         return 'OK'
     except Exception as e:
-        lg.warning("Erreur lors de l'envoi de l'email :", e)
+        lg.warning(f"Erreur lors de l'envoi de l'email : {e}")
+        
         return str(e), 500
 
 

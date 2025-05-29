@@ -1,7 +1,7 @@
 import os
 from .views import app
 import logging as lg
-import config as c
+from config import config as c
 import enum
 from .models import Article, Autor
 
