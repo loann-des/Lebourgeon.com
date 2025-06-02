@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import Column, Integer, PickleType, String, Enum, DATE, URL
+from sqlalchemy import Column, Integer, PickleType, String, Enum, DATE, URL, LargeBinary
 from sqlalchemy.ext.mutable import MutableList
 from datetime import datetime
 import logging as lg
@@ -10,7 +10,7 @@ from .views import app
 # Create database connection object
 db = SQLAlchemy(app)
 
-date = datetime.today()
+date = datetime.now()
 
 class Gender(enum.Enum):
     Biologie = 0
@@ -39,13 +39,22 @@ class Article(db.Model):
 
 class Autor(db.Model):
     id = Column(Integer, primary_key=True)
-    nom = Column(String(200), nullable=False)
-    prenom = Column(String(200), nullable=False)
+    nom = Column(String(50), nullable=False)
+    prenom = Column(String(50), nullable=False)
     
     def __init__(self, id, nom, prenom):
         self.id = id
         self.nom = nom
         self.prenom = prenom
+
+class Upload(db.Model):
+    id = Column(Integer,primary_key=True)
+    name = Column(String(50))
+    data = Column(LargeBinary)
+    
+    def __init__(self, name, data):
+        self.name = name
+        self.data = data
 
 def init_db():
     db.drop_all()
@@ -56,6 +65,10 @@ def init_db():
     db.session.commit()
     lg.warning("Database initialized!")
 
+
+def upload(name : str, data):
+    db.session.add(Upload(name,data))
+    db.session.commit()
     
 
 

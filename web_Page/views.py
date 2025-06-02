@@ -4,26 +4,32 @@ import logging as lg
 from config import config as c
 
 app = Flask(__name__)
-
-
-# app.config.from_object('config')
-# Config options - Make sure you created a 'config.py' file.
 app.config.from_object("config.config")
-
-
-# To get one variable, tape app.config['MY_VARIABLE']
-app.config["SQLALCHEMY_DATABASE_URI"] = c.SQLALCHEMY_DATABASE_URI
 
 mail = Mail(app)
 
 @app.route("/")
 @app.route("/index/")
 def index():
+    """Renders the main index page of the website.
+
+    Handles requests to the root and '/index/' URLs and returns the index HTML template.
+
+    Returns:
+        A rendered HTML template for the index page.
+    """
     return render_template("index.html")
 
 @app.route("/blog")
 @app.route("/blog/")
 def blog():
+    """Renders the blog page of the website.
+
+    Handles requests to the '/blog' and '/blog/' URLs and returns the blog HTML template.
+
+    Returns:
+        A rendered HTML template for the blog page.
+    """
     return render_template("blog.html")
 
 @app.route("/blog/blog-details")
@@ -42,7 +48,7 @@ def send_email():
 
         msg = Message(subject,
                       sender=email,
-                      recipients=[app.config['MAIL_USERNAME']])  # envoie à toi-même
+                      recipients=[app.config['MAIL_USERNAME']])
         msg.body = f"Nom: {name}\nEmail: {email}\n\nMessage:\n{message}"
 
         mail.send(msg)
@@ -51,7 +57,14 @@ def send_email():
         lg.warning(f"Erreur lors de l'envoi de l'email : {e}")
         
         return str(e), 500
-
-
-# if __name__ == "__main__":
-#     app.run()
+    
+@app.route('/upload', methods=['GET', 'POST'])
+def upload():
+    from .models import upload as upd
+    if request.method == 'POST' :
+        file = request.files['file']
+        
+        upd(name=file.filename, data=file.read())
+        
+        return f'Uploded {file.filename}'
+    return render_template('upload.html')
