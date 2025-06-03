@@ -2,8 +2,6 @@ from datetime import datetime
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mail import Mail, Message
 import logging as lg
-from config import config as c
-import os
 
 app = Flask(__name__)
 app.config.from_object("config.config")
@@ -37,10 +35,11 @@ def blog():
     return render_template("blog.html")
 
 
-@app.route("/blog/blog-details")
-@app.route("/blog/blog-details/")
-def blog_details():
-    return render_template("blog-details.html")
+@app.route("/blog/blog-details/<int:article_id>")
+def blog_details(article_id):
+    from .fonction import get_article
+    article = get_article(article_id)
+    return render_template("blog-details.html", article=article)
 
 
 @app.route("/send-email", methods=["POST"])

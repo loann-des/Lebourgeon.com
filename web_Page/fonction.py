@@ -87,6 +87,9 @@ def get_ref(val):
         case 'DONS':
             return Val.DONS.value
 
+def get_article(article_id : int)-> Article :
+    return Article.query.get_or_404(article_id)
+
 
 def get_AllArticle() -> list[Article]:
     for x in Article.query.all():
@@ -95,7 +98,7 @@ def get_AllArticle() -> list[Article]:
 
 def get_Autor(id) :
     for x in Autor.query.filter(Autor.id.in_(id) ).all():
-        print(f"{x.id}, {x.nom}, {x.prenom}")
+        print(f"{x.id}, {x.nom}, {x.prenom}")#TODO remove print
     return Autor.query.filter(Autor.id.in_(id) ).all()
 
 def str_(x : int) :
