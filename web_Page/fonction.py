@@ -4,6 +4,7 @@ import logging as lg
 from config import config as c
 import enum
 from .models import Article, Autor
+from werkzeug.datastructures import FileStorage
 
 
 
@@ -50,7 +51,7 @@ def text_from(file_name: str, title: bool = False):
     
 
 def html_from(file_name: str, section: int):
-    file_name = file_name + '.txt'
+    file_name += '.txt'
     path = os.path.join(URI, file_name)
     try:
         with open(path, 'r', encoding='UTF-8') as f:
@@ -58,7 +59,7 @@ def html_from(file_name: str, section: int):
             lignes = f.readlines()
             res = []
             for l in lignes:
-                if (l[0:3] == '§§§'):
+                if (l[:3] == '§§§'):
                     start += 1
                 elif (start == section):
                     res.append(l)
@@ -100,6 +101,25 @@ def get_Autor(id) :
 def str_(x : int) :
     return str(x)
 
+def rename(pdf : FileStorage, img : FileStorage, article_id : int) ->tuple[str,str] :
+    # Extensions
+    pdf_ext = os.path.splitext(pdf.filename)[1] or ".pdf"
+    img_ext = os.path.splitext(img.filename)[1] or ".jpg"
+    
+    # Noms automatiques
+    pdf_filename = f"blog-{article_id}{pdf_ext}"
+    img_filename = f"blog-{article_id}{img_ext}"
+    
+    # Chemins complets
+    pdf_path = os.path.join('web_Page/static/pdf', pdf_filename)
+    img_path = os.path.join('web_Page/static/images/blog', img_filename)
+    
+    # Sauvegarde
+    pdf.save(pdf_path)
+    img.save(img_path)
+    
+    # Retourner les chemins relatifs depuis "static/"
+    return f"pdf/{pdf_filename}", f"images/blog/{img_filename}"
 
 
 app.jinja_env.globals.update(mdw=mdw)

@@ -36,7 +36,7 @@
             <article>
 
               <div class="post-img">
-                <img src="{{ url_for('static', filename= "images/blog/" + article.img) }}" alt="" class="img-fluid">
+                <img src="{{ url_for('static', filename=article.img) }}" alt="" class="img-fluid">
               </div>
 
               <p class="post-category">{{article.gender.name}}</p>
