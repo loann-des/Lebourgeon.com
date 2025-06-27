@@ -7,7 +7,6 @@ from .models import Article, Autor
 from werkzeug.datastructures import FileStorage
 
 
-
 class Val(enum.Enum):
     E_MAIL = c.E_MAIL
     E_MAIL_LINK = c.E_MAIL_LINK
@@ -19,51 +18,53 @@ class Val(enum.Enum):
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
-URI = os.path.join(basedir, 'txt')
+URI = os.path.join(basedir, "txt")
 
-def word_at_index(index : int, txt : str)->str:
-    return txt.split(' ')[index+1]
 
-def mdw(txt : str)->str :
+def word_at_index(index: int, txt: str) -> str:
+    return txt.split(" ")[index + 1]
+
+
+def mdw(txt: str) -> str:
     return word_at_index(-1, txt)
 
 
-def txt_from_index(index : int, txt : str)->str :
+def txt_from_index(index: int, txt: str) -> str:
     index += 1
-    return ''.join(
-        [' ' + word for word in txt.split(' ')[index:]]
-        )
-    
-def txtOf(txt : str)->str :
+    return "".join([" " + word for word in txt.split(" ")[index:]])
+
+
+def txtOf(txt: str) -> str:
     return txt_from_index(0, txt)
 
+
 def text_from(file_name: str, title: bool = False):
-    file_name = file_name + '.txt'
+    file_name = file_name + ".txt"
     path = os.path.join(URI, file_name)
     try:
-        with open(path, 'r', encoding='UTF-8') as f:
-            if (title):
+        with open(path, "r", encoding="UTF-8") as f:
+            if title:
                 return f.readline().replace("\n", "")
             else:
                 return f.readlines()[1].replace("\n", "")
     except Exception as ex:
         lg.warning(ex)
-    
+
 
 def html_from(file_name: str, section: int):
-    file_name += '.txt'
+    file_name += ".txt"
     path = os.path.join(URI, file_name)
     try:
-        with open(path, 'r', encoding='UTF-8') as f:
+        with open(path, "r", encoding="UTF-8") as f:
             start = 0
             lignes = f.readlines()
             res = []
             for l in lignes:
-                if (l[:3] == '§§§'):
+                if l[:3] == "§§§":
                     start += 1
-                elif (start == section):
+                elif start == section:
                     res.append(l)
-                if (start > section):
+                if start > section:
                     return res
         return res
     except Exception as ex:
@@ -72,55 +73,61 @@ def html_from(file_name: str, section: int):
 
 def get_ref(val):
     match val:
-        case 'E_MAIL':
+        case "E_MAIL":
             return Val.E_MAIL.value
-        case 'E_MAIL_LINK':
+        case "E_MAIL_LINK":
             return Val.E_MAIL_LINK.value
-        case 'INSTA':
+        case "INSTA":
             return Val.INSTA.value
-        case 'TEL':
+        case "TEL":
             return Val.TEL.value
-        case 'LINKEDIN':
+        case "LINKEDIN":
             return Val.LINKEDIN.value
-        case 'ADHESION':
+        case "ADHESION":
             return Val.ADHESION.value
-        case 'DONS':
+        case "DONS":
             return Val.DONS.value
 
-def get_article(article_id : int)-> Article :
+
+def get_article(article_id: int) -> Article:
     return Article.query.get_or_404(article_id)
 
 
 def get_AllArticle() -> list[Article]:
     for x in Article.query.all():
-        print(f"{x.id}, {x.title}, {x.gender.name}, {x.date}, {x.autor_id} , {x.file}, {x.img}")
+        print(
+            f"{x.id}, {x.title}, {x.gender.name}, {x.date}, {x.autor_id} , {x.file}, {x.img}"
+        )
     return Article.query.all()
 
-def get_Autor(id) :
-    for x in Autor.query.filter(Autor.id.in_(id) ).all():
-        print(f"{x.id}, {x.nom}, {x.prenom}")#TODO remove print
-    return Autor.query.filter(Autor.id.in_(id) ).all()
 
-def str_(x : int) :
+def get_Autor(id):
+    for x in Autor.query.filter(Autor.id.in_(id)).all():
+        print(f"{x.id}, {x.nom}, {x.prenom}")  # TODO remove print
+    return Autor.query.filter(Autor.id.in_(id)).all()
+
+
+def str_(x: int):
     return str(x)
 
-def rename(pdf : FileStorage, img : FileStorage, article_id : int) ->tuple[str,str] :
+
+def rename(pdf: FileStorage, img: FileStorage, article_id: int) -> tuple[str, str]:
     # Extensions
     pdf_ext = os.path.splitext(pdf.filename)[1] or ".pdf"
     img_ext = os.path.splitext(img.filename)[1] or ".jpg"
-    
+
     # Noms automatiques
     pdf_filename = f"blog-{article_id}{pdf_ext}"
     img_filename = f"blog-{article_id}{img_ext}"
-    
+
     # Chemins complets
-    pdf_path = os.path.join('web_Page/static/pdf', pdf_filename)
-    img_path = os.path.join('web_Page/static/images/blog', img_filename)
-    
+    pdf_path = os.path.join("web_Page/static/pdf", pdf_filename)
+    img_path = os.path.join("web_Page/static/images/blog", img_filename)
+
     # Sauvegarde
     pdf.save(pdf_path)
     img.save(img_path)
-    
+
     # Retourner les chemins relatifs depuis "static/"
     return f"pdf/{pdf_filename}", f"images/blog/{img_filename}"
 
